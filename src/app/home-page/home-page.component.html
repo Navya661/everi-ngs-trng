@@ -1,0 +1,22 @@
+<p ChgClr>This is Home Page</p>
+<h1 ChgClr>This is Home Page</h1>
+<button (click)="namService.loginFnc()">Login</button>
+
+<button (click)="GotoPageFnc()">Go To User Page</button><br><br>
+<form><hr>
+
+<h2>Selected News: {{selectedNews}}</h2>
+<input placeholder="comment"
+    [(ngModel)]="commentVar"
+    name="commentVav"
+	#commentVav="ngModel">
+<button (click)="AddFun(commentVav)">Add Comment</button>
+</form>
+
+<news-page  title="Education" 
+   detail="Angular is getting better" 
+   [commentAry]="commentAryVar['Education']"
+   (SelectMe)="SelectMeFnc($event)"></news-page>
+
+<news-page title="Sports" detail="Sports plays imp role " [commentAry]="commentAryVar['Sports']" (SelectMe)="SelectMeFnc($event)"></news-page>
+<news-page title="Politics" detail="Politics wins" [commentAry]="commentAryVar['Politics']" (SelectMe)="SelectMeFnc($event)"></news-page>

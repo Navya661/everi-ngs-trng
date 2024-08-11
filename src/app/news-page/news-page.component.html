@@ -1,0 +1,11 @@
+
+<div class="divCls">
+	<h4>Title : {{titleVar}}</h4>
+	<p>Details : {{detailVar}}</p>
+	<ul>
+		<li *ngFor="let commmentVar of commentAryVar">
+			{{commmentVar}}
+		</li>
+	</ul>
+	<button (click)="SelectMeFnc()"> Select</button>
+</div>

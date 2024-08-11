@@ -1,0 +1,185 @@
+<h1> Welcome my dear {{namVar}}</h1>
+<h1>Welcome {{firstname+" "+lastname}}</h1>
+<h1 *ngIf="tymvar<12">Gud Morning</h1>
+<!-- <h1>Salary{{salary | currency}}</h1> -->
+
+
+<p>{{88+66}}</p>
+<div *ngIf="tymvar<12; then GM else GA"></div>
+<ng-template #GM>
+  <p>GM</p>
+</ng-template>
+<ng-template #GA>
+  <p>GA</p>
+</ng-template>
+
+<ul>
+  <li *ngFor="let itmvar of tripAryVar | slice : 0:3; let Idxvar=index">{{Idxvar+1}} {{itmvar}}
+  </li>
+</ul>
+
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Prod</th>
+    <th>Cost</th>
+  </tr>
+  <tr>
+    <tr *ngFor = "let ItemVar of verifyTable.sort(sortByCost)">
+      <td>{{ItemVar.name}}</td>
+      <td>{{ItemVar.product}}</td>
+      <td>{{ItemVar.cost}}</td>
+    </tr> 
+</table><br><br>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Prod</th>
+    <th>Cost</th>
+  </tr>
+  <tr>
+    <tr *ngFor = "let ItemVar of verifyTable.sort(sortByProduct)">
+      <td>{{ItemVar.name}}</td>
+      <td>{{ItemVar.product}}</td>
+      <td>{{ItemVar.cost}}</td>
+    </tr> 
+  <tr>
+    <th colspan="2">Total</th>
+    <td>{{getAbr(sum())}}</td>
+  </tr>
+</table>
+<ng-container [ngSwitch]="seasonvar">
+  <div *ngSwitchCase="'summer'">Goa</div>
+  <div *ngSwitchCase="'winter'">Ooty</div>
+  <div *ngSwitchCase="'rainy'">kerala</div>
+  <div *ngSwitchCase="'spring'">Manali</div>
+  <div *ngSwitchCase>Dft Tst Txt</div>
+</ng-container>
+
+<button (click)="buttonclickfnc()"> Dare to Click Me</button><br>
+<button (dblclick)="buttondoubleclickfnc()">Click Here</button><br><br><br>
+
+<!-- <div (drag)="dragfnc()" id="1">My Name is Navyashree<br>Iam from Mangalore<br>Graduated from SJEC</div><br><br>
+
+<div (mousedown)="onMouseDown($event)" id="2">Iam Nishanth<br>Iam from Mangalore<br>Graduated from VCET</div> -->
+<div class="list" (dragover)="onDragOver($event)" (drop)="onDrop($event, listOne, listTwo)">
+  <div class="list-item"
+       *ngFor="let item of listOne"
+       draggable="true"
+       (dragstart)="onDragStart($event, item)">
+    {{ item }}
+  </div>
+</div>
+ 
+<div class="list" (dragover)="onDragOver($event)" (drop)="onDrop($event, listTwo, listOne)">
+  <div class="list-item"
+       *ngFor="let item of listTwo"
+       draggable="true"
+       (dragstart)="onDragStart($event, item)">
+    {{ item }}
+  </div>
+</div>
+<div>
+
+</div>
+<!-- Double flower brackets are used to convert to js imean calculations automatically -->
+<div [ngClass]="{greenThemeClass:StsVar}">
+  <h1>ng Class With The Theme</h1>
+</div>
+<div [ngClass]="StsVar?'greenThemeClass':'purpleThemeClass'">
+  <h1>ng Class With The Theme</h1>
+  <button (click)="changeTheme()">Change Theme</button>
+</div>
+<br>
+<div  [ngStyle]="{'background-color': currentColor}">Toggle button
+</div>
+<!-- -------------------------------------------------------------------------------------------------------------- -->
+
+
+<!-- <h1>You Entered : {{Formiptvar.namin}}{{Formiptvar.mblin}}</h1>
+<input type="text" [(ngModel)]="namiptvar" placeholder="Enter name"><br><br><br><br>
+
+<form>
+<h1>FORM</h1><br>
+<input type="text" 
+        name="namiptvar"
+        #namiptvar="ngModel"
+        [(ngModel)]="Formiptvar.namin"
+        placeholder="Enter name"
+        required>
+    <div *ngIf="namiptvar.invalid && (namiptvar.touched || namiptvar.dirty)" class="errorclass">
+      <span *ngIf="namiptvar.errors?.required">Name is required</span>
+      <span *ngIf="namiptvar.errors?.minlength">Minimum length 3</span>
+      <span *ngIf="namiptvar.errors?.maxlength">Maximum length 10</span></div>
+    <br><br>
+<input type="text" [(ngModel)]="Formiptvar.mblin" placeholder="Enter Mobile"><br><br>
+<input type="text" [(ngModel)]="Formiptvar.emailin" placeholder="Enter Email"><br><br>
+<button>Add</button>
+</form> -->
+<br><br>
+<form>
+  <h1>FORM</h1><br>
+  <label>
+    <input type="text" 
+      name="NamIptVav" 
+      #NamIptVav="ngModel" 
+      [(ngModel)]="FomIptVar.NamIptVak" 
+      placeholder="Enter Name"
+      required 
+      minlength="3"
+      maxlength="10">
+    <div *ngIf="NamIptVav.invalid && 
+    (NamIptVav.touched || NamIptVav.dirty)" class="ErrMsgCls">
+      <span *ngIf="NamIptVav.errors?.required">Name is required.</span>
+      <span *ngIf="NamIptVav.errors?.minlength">Min length shud be 3</span>
+      <span *ngIf="NamIptVav.errors?.maxlength">Max length shud be 10</span>
+    </div><br>
+  </label>
+  <br>
+  <br>
+  <label>
+    <input type="number" 
+    name="MblIptVav" 
+    #MblIptVav="ngModel"
+      [(ngModel)]="FomIptVar.MblIptVak" 
+      placeholder="Enter Mobile"
+      pattern="[6-9][0-9]{9}">
+      <div *ngIf="MblIptVav.invalid && 
+    (MblIptVav.touched || MblIptVav.dirty)" class="ErrMsgCls">
+      <span *ngIf="MblIptVav.errors?.required">Mobile is required.</span>
+      <span *ngIf="MblIptVav.errors?.pattern">Enter valid mobile</span>
+    </div><br>
+  </label>
+  <br>
+  <br>
+  <label>
+  <input type="email"
+    name="MylIptVav" 
+    #MylIptVav="ngModel" 
+    [(ngModel)]="FomIptVar.MylIptVak" 
+    placeholder="Enter Email"
+    required
+    email>
+  <div *ngIf="MylIptVav.invalid && 
+    (MylIptVav.touched || MylIptVav.dirty)" class="ErrMsgCls">
+      <span *ngIf="MylIptVav.errors?.required">Email is required.</span>
+      <span *ngIf="MylIptVav.errors?.email">Enter valid email</span>
+    </div><br>
+  </label>
+  <br>
+  <br>
+  <button>Add</button>
+</form>
+<!-- ---------------------------------------------------------------------------- -->
+<!-- Always type 'type=button' when button is put inside the form tag -->
+
+<h1>ToDo List</h1>
+<input type="text" [(ngModel)]="namevar" placeholder="Enter the hobbies"><br>
+<button (click)="isEditing ? updateItem() : addToDo()"> {{isEditing ? 'Update' : 'Add'}}</button><br><br>
+  <li *ngFor="let itemvar of todoarrayvar; let i = index">
+  {{itemvar}}<br>
+  <button (click)="editItem(i)">Edit</button>
+  <button (click)="deleteItem(i)">Delete</button><br><br>
+  </li><br>
+
+  
